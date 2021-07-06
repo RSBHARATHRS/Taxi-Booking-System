@@ -11,6 +11,9 @@ public class Taxi {
     int freeTime;
     int totalEarning;
     List<String> tripDetailsList = new ArrayList<String>();
+    /*
+     * __________________________________Taxi_Constructor____________________________________
+     */
 
     public Taxi() {
         taxiCount = taxiCount + 1;
@@ -23,6 +26,9 @@ public class Taxi {
         totalEarning = 0;
     }
 
+    /*
+     * _______________________________________Update_____________________________________
+     */
     public void update(boolean bookingStatus, char p_point, char d_point, int pickUpTime) {
         this.isBooked = true;
         this.pickUpPoint = p_point;
