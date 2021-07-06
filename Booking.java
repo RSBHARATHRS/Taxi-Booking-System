@@ -3,13 +3,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Booking implements TaxiRules {
+
     static List<Taxi> taxiList;
 
     /*
-     * __________________________________Create_Taxi___________________________________
+     * _____________________________________Create_Taxi_____________________________________
      */
     static List<Taxi> createTaxi(int n) {
-
         taxiList = new ArrayList<Taxi>();
         for (int i = 0; i < n; i++) {
             Taxi t = new Taxi();
@@ -19,7 +19,7 @@ public class Booking implements TaxiRules {
     }
 
     /*
-     * _________________________________Print_Taxi_Details_________________________________
+     * _________________________________Print_Taxi_Details___________________________________
      */
     public void printTaxiDetails(Taxi t) {
 
@@ -29,7 +29,7 @@ public class Booking implements TaxiRules {
     }
 
     /*
-     * ______________________________________Book_Taxi____________________________________
+     * ______________________________________Book_Taxi________________________________________
      */
     public void bookTaxi(char p_point, char d_point, int p_time) {
         // int min_dis = 999;
@@ -71,7 +71,7 @@ public class Booking implements TaxiRules {
     }
 
     /*
-     * ___________________________________Get_Available_Taxis____________________________________
+     * _________________________________Get_Available_Taxis___________________________________
      */
     public List<Taxi> getAvailableTaxi(List<Taxi> taxiList, char pickupPoint, int pickupTime) {
         List<Taxi> availableTaxiList = new ArrayList<Taxi>();
@@ -83,6 +83,9 @@ public class Booking implements TaxiRules {
         }
         return availableTaxiList;
     }
+    /*
+     * ______________________________Get_Taxis_In_Same_Location________________________________
+     */
 
     public List<Taxi> getTaxisInSameLocation(List<Taxi> availableTaxis, char pickUpPoint) {
         List<Taxi> taxisInSameLocation = new ArrayList<Taxi>();
@@ -93,6 +96,9 @@ public class Booking implements TaxiRules {
         }
         return taxisInSameLocation;
     }
+    /*
+     * _____________________________Get_Taxis_In_Nearest_Locations____________________________
+     */
 
     public List<Taxi> getTaxisInNearestLocation(List<Taxi> availableTaxis, char pickUpPoint) {
         List<Taxi> taxisInNearestLocation = new ArrayList<Taxi>();
@@ -111,7 +117,7 @@ public class Booking implements TaxiRules {
     }
 
     /*
-     * ______________________________________Main_Method___________________________________
+     * _______________________________________Main_Method_____________________________________
      */
     public static void main(String args[]) {
         Booking booking = new Booking();
@@ -131,7 +137,7 @@ public class Booking implements TaxiRules {
             System.out.println("2 -> Taxis all trips Details");
             System.out.println("3 -> Exit");
             System.out.print("Enter your choice : ");
-            choice = (int) sc.nextInt();
+            choice = sc.nextInt();
 
             int pickup_time = 0;
             switch (choice) {
@@ -173,7 +179,7 @@ public class Booking implements TaxiRules {
                     break;
 
                 case 2:
-                    for (Taxi1 t : taxiList) {
+                    for (Taxi t : taxiList) {
                         t.printTaxiFullDetails(t.tripDetailsList);
                     }
                     break;
