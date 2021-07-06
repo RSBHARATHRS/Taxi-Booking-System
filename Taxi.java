@@ -36,10 +36,10 @@ public class Taxi {
         tripDetailsList.add(this.isBooked + "\t\t" + this.currentLocation + " \t\t\t" + this.pickUpPoint + "\t\t"
                 + this.dropPoint + "\t\t" + this.freeTime + "\t\t" + this.totalEarning);
     }
+
     /*
      * _______________________________Print_Taxis_Full_Trips_Details__________________________________
      */
-
     public void printTaxiFullDetails(List<String> lStr) {
         System.out.println("Booked status\tcurrent location\tpick up point\tdrop point\tfree time\ttotal Earning");
         System.out.println(
@@ -49,4 +49,4 @@ public class Taxi {
         }
 
     }
-}
+}// END of Taxi Class

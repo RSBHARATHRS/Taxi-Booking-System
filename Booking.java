@@ -9,7 +9,7 @@ public class Booking implements TaxiRules {
     /*
      * _____________________________________Create_Taxi_____________________________________
      */
-    static List<Taxi> createTaxi(int n) {
+    public List<Taxi> createTaxi(int n) {
         taxiList = new ArrayList<Taxi>();
         for (int i = 0; i < n; i++) {
             Taxi t = new Taxi();
@@ -129,7 +129,7 @@ public class Booking implements TaxiRules {
         System.out.println("___________Taxi Booking System___________");
         System.out.print("Enter total no of taxis : ");
         total_no_of_taxis = sc.nextInt();
-        taxiList = createTaxi(total_no_of_taxis);
+        taxiList = booking.createTaxi(total_no_of_taxis);
         boolean loop = true;
         do {
             System.out.println("0 -> Book Taxi");
