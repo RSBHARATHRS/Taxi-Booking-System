@@ -13,5 +13,5 @@ public interface TaxiRules {
 
     public List<Taxi> getTaxisInNearestLocation(List<Taxi> availableTaxis, char pickUpPoint);
 
-    public void bookTaxi(char p_point, char d_point, int p_time);
+    public void bookTaxi(String customerID, char p_point, char d_point, int p_time);
 }

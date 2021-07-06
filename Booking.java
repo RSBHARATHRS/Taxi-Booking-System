@@ -31,9 +31,7 @@ public class Booking implements TaxiRules {
     /*
      * ______________________________________Book_Taxi________________________________________
      */
-    public void bookTaxi(char p_point, char d_point, int p_time) {
-        // int min_dis = 999;
-        // int min_earning = 9999;
+    public void bookTaxi(String customerID, char p_point, char d_point, int p_time) {
         boolean bookingStatus = false;
         Taxi allocatedTaxi = new Taxi();
 
@@ -61,7 +59,7 @@ public class Booking implements TaxiRules {
             }
         }
 
-        allocatedTaxi.update(bookingStatus, p_point, d_point, p_time);
+        allocatedTaxi.update(customerID, bookingStatus, p_point, d_point, p_time);
         if (bookingStatus) {
             System.out.println("Successfully booked with taxi No : " + allocatedTaxi.taxiId);
         } else {
@@ -77,7 +75,7 @@ public class Booking implements TaxiRules {
         List<Taxi> availableTaxiList = new ArrayList<Taxi>();
         for (Taxi t : taxiList) {
             int timeTackToReachCustomer = t.freeTime + Math.abs(pickupPoint - t.currentLocation);
-            if (timeTackToReachCustomer <= pickupTime && pickupTime <= t.freeTime)
+            if (timeTackToReachCustomer <= pickupTime && pickupTime >= t.freeTime)
                 availableTaxiList.add(t);
 
         }
@@ -124,6 +122,7 @@ public class Booking implements TaxiRules {
         Scanner sc = new Scanner(System.in);
         int total_no_of_taxis;
         int choice = 0;
+        String customerId;
         char pickup_point;
         char drop_point;
         System.out.println("___________Taxi Booking System___________");
@@ -132,19 +131,21 @@ public class Booking implements TaxiRules {
         taxiList = booking.createTaxi(total_no_of_taxis);
         boolean loop = true;
         do {
-            System.out.println("0 -> Book Taxi");
+            System.out.println("\n0 -> Book Taxi");
             System.out.println("1 -> General Taxi Details");
             System.out.println("2 -> Taxis all trips Details");
             System.out.println("3 -> Exit");
             System.out.print("Enter your choice : ");
             choice = sc.nextInt();
-
+            System.out.println();
             int pickup_time = 0;
             switch (choice) {
 
                 case 0:
                     boolean flag = true;
                     do {
+                        System.out.print("Enter Customer ID : ");
+                        customerId = sc.next();
                         System.out.print("Enter pick up point ('A','B','C','D','E','F') : ");
                         pickup_point = sc.next().toUpperCase().charAt(0);
                         System.out.print("Enter drop up point ('A','B','C','D','E','F') : ");
@@ -157,15 +158,14 @@ public class Booking implements TaxiRules {
 
                         System.out.print("Enter pick up time : ");
                         pickup_time = sc.nextInt();
-                        System.out.println("Confirem (Y/N)? : ");
+                        System.out.print("Are you sure, Do u want to continue (Y/N)? : ");
                         char temp = sc.next().charAt(0);
                         if (temp == 'Y' || temp == 'y') {
                             flag = false;
                         }
                     } while (flag);
 
-                    System.out.println(pickup_point + "," + drop_point);
-                    booking.bookTaxi(pickup_point, drop_point, pickup_time);
+                    booking.bookTaxi(customerId, pickup_point, drop_point, pickup_time);
                     break;
 
                 case 1:
